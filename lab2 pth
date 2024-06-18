@@ -1,0 +1,31 @@
+import math
+
+k1 = 2
+b1 = 3
+k2 = -1
+b2 = 5
+
+point = (4, 6)
+
+def distance_to_line(k, b, point):
+    x0, y0 = point
+    return abs(k*x0 - y0 + b) / math.sqrt(k**2 + 1)
+
+distance1 = distance_to_line(k1, b1, point)
+distance2 = distance_to_line(k2, b2, point)
+
+print("Расстояние от точки до первой прямой:", distance1)
+print("Расстояние от точки до второй прямой:", distance2)
+
+x_intersect = (b2 - b1) / (k1 - k2)
+y_intersect = k1 * x_intersect + b1
+intersect_point = (x_intersect, y_intersect)
+
+print("Точка пересечения прямых:", intersect_point)
+
+distance_to_intersect = math.sqrt((point[0] - intersect_point[0])**2 + (point[1] - intersect_point[1])**2)
+print("Расстояние от заданной точки до точки пересечения прямых:", distance_to_intersect)
+
+angle_radians = math.atan(abs((k1 - k2) / (1 + k1*k2)))
+angle_degrees = math.degrees(angle_radians)
+print("Угол между прямыми в градусах:", angle_degrees)
