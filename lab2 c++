@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cmath>
+
+struct Point {
+    double x, y;
+};
+
+struct Ellipse {
+    double a, b; // Полуоси
+    double h, k; // Центр
+    double e;    // Эксцентриситет
+};
+
+bool isPointInsideEllipse(const Point& point, const Ellipse& ellipse) {
+    double value = pow((point.x - ellipse.h) / ellipse.a, 2) + pow((point.y - ellipse.k) / ellipse.b, 2);
+    return value <= 1;
+}
+
+int main() {
+    Ellipse ellipse = {5.0, 3.0, 2.0, 3.0, 0.0};  // Пример параметров эллипса
+    Point point = {4.0, 3.0};  // Пример координат точки
+
+    if (isPointInsideEllipse(point, ellipse)) {
+        std::cout << "Точка принадлежит эллипсу" << std::endl;
+    } else {
+        std::cout << "Точка не принадлежит эллипсу" << std::endl;
+    }
+    double c = sqrt(pow(ellipse.a, 2) - pow(ellipse.b, 2));
+    std::cout << "Координаты фокусов: (" << ellipse.h + c << ", " << ellipse.k << ") и (" << ellipse.h - c << ", " << ellipse.k << ")" << std::endl;
+
+    std::cout << "Длина большой полуоси: " << ellipse.a * 2 << std::endl;
+    std::cout << "Длина малой полуоси: " << ellipse.b * 2 << std::endl;
+
+    ellipse.e = c / ellipse.a;
+    std::cout << "Эксцентриситет: " << ellipse.e << std::endl;
+
+    double distance_to_directrix = fabs(ellipse.a / ellipse.e);
+    std::cout << "Расстояние от директрис до центра: " << distance_to_directrix << std::endl;
+
+    return 0;
+}
