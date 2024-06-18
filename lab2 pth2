@@ -1,0 +1,27 @@
+import
+
+vector1 = np.random.rand(3) 
+vector2 = np.random.rand(3)  
+length_vector1 = np.linalg.norm(vector1)
+length_vector2 = np.linalg.norm(vector2)
+
+print("Длина первого вектора:", length_vector1)
+print("Длина второго вектора:", length_vector2)
+
+angle_radians = np.arccos(np.dot(vector1, vector2) / (length_vector1 * length_vector2))
+angle_degrees = np.degrees(angle_radians)
+print("Угол между векторами в градусах:", angle_degrees)
+
+sum_vector = vector1 + vector2
+diff_vector = vector1 - vector2
+
+print("Сумма векторов:", sum_vector)
+print("Разность векторов:", diff_vector)
+
+if np.cross(vector1, vector2).any() == 0:
+    print("Векторы параллельны")
+else:
+    print("Векторы не параллельны")
+
+cross_product = np.cross(vector1, vector2)
+print("Векторное произведение:", cross_product)
