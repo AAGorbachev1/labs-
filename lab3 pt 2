@@ -1,0 +1,23 @@
+import math
+
+def series_sum(x, precision):
+    k = 1
+    sum_value = 0
+    current_term = 0
+
+    while True:
+        term = ((-1)**(k-1) / math.sin(k * x)) + 19 + k**2
+        current_term = term
+        sum_value += current_term
+
+        if abs(current_term) < precision:
+            break
+
+        k += 1
+
+    return sum_value
+
+x = 1  # Пример значений x
+precision = 1e-6
+result = series_sum(x, precision)
+print(f"Сумма функционального ряда с точностью до 10^-6 при x={x}:", result)
