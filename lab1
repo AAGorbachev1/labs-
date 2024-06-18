@@ -1,0 +1,21 @@
+z1 = complex(-1, 1)
+z2 = complex(-3, 2)
+z3 = complex(-1, 2)
+
+sum_result = z1 + z2
+print("Сумма:", sum_result)
+
+diff_result = z1 - z2
+print("Разность:", diff_result)
+
+prod_result = z1 * z2
+print("Произведение:", prod_result)
+
+quot_result = z1 / z2
+print("Частное:", quot_result)
+
+pow4_result = z3 ** 4
+print("Четвертая степень:", pow4_result)
+
+root3_result = z3 ** (1/3)
+print("Корень третьей степени:", root3_result)
