@@ -1,0 +1,20 @@
+def series_sum(precision):
+    k = 1
+    sum_value = 0
+    current_term = 0
+
+    while True:
+        term = 19 / 2**(k-1) + ((-1)**(k-1)) / (2 * 3**(k-1))
+        current_term = term
+        sum_value += current_term
+
+        if abs(current_term) < precision:
+            break
+
+        k += 1
+
+    return sum_value
+
+precision = 1e-6
+result = series_sum(precision)
+print("Сумма ряда с точностью до 10^-6:", result)
