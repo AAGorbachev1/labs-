@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cmath>
+
+struct Point3D {
+    double x, y, z;
+};
+
+struct Ellipsoid {
+    double a, b, c; // Полуоси
+    double h, k, l; // Центр
+};
+
+struct Plane {
+    double A, B, C, D;  Ax + By + Cz + D = 0
+};
+
+struct Line {
+    Point3D point;
+    Point3D direction;
+};
+
+bool isPlaneIntersectingEllipsoid(const Plane& plane, const Ellipsoid& ellipsoid) {
+    double distance = fabs(plane.A * ellipsoid.h + plane.B * ellipsoid.k + plane.C * ellipsoid.l + plane.D) /
+                      sqrt(pow(plane.A, 2) + pow(plane.B, 2) + pow(plane.C, 2));
+    return distance <= sqrt(pow(ellipsoid.a, 2) + pow(ellipsoid.b, 2) + pow(ellipsoid.c, 2));
+}
+
+bool isPointInsideEllipsoid(const Point3D& point, const Ellipsoid& ellipsoid) {
+    double value = pow((point.x - ellipsoid.h) / ellipsoid.a, 2) +
+                   pow((point.y - ellipsoid.k) / ellipsoid.b, 2) +
+                   pow((point.z - ellipsoid.l) / ellipsoid.c, 2);
+    return value <= 1;
+}
+
+int main() {
+    Ellipsoid ellipsoid = {5.0, 3.0, 2.0, 2.0, 3.0, 4.0}; 
+    Plane plane = {1.0, -2.0, 3.0, 4.0}; 
+    Line line = {{1.0, 2.0, 3.0}, {1.0, 1.0, 1.0}}; 
+    Point3D point = {3.0, 4.0, 5.0};
+
+    if (isPlaneIntersectingEllipsoid(plane, ellipsoid)) {
+        std::cout << "Плоскость пересекает эллипсоид" << std::endl;
+    } else {
+        std::cout << "Плоскость не пересекает эллипсоид" << std::endl;
+    }
+
+    if (isPointInsideEllipsoid(point, ellipsoid)) {
+        std::cout << "Точка принадлежит эллипсоиду" << std::endl;
+    } else {
+        std::cout << "Точка не принадлежит эллипсоиду" << std::endl;
+    }
+
+    return 0;
+}
